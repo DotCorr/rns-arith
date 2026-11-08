@@ -1,0 +1,92 @@
+{
+  "machine": "arm64 arm / macOS-27.0-arm64-arm-64bit-Mach-O",
+  "python": "3.13.15",
+  "numpy": "2.5.4",
+  "torch": "2.15.0",
+  "threads": 1,
+  "date": "2026-11-08 14:31",
+  "datasets": {
+    "mnist": {
+      "baseline": [
+        {
+          "model": "MLP 784-256-10 fp32 (Adam, 5 ep)",
+          "acc": 0.9747,
+          "train_s": 3.6303829170065,
+          "infer_s": 0.008189624990336597,
+          "mem_bytes": 814120
+        },
+        {
+          "model": "MLP 784-32-10 fp32 (Adam, 5 ep)",
+          "acc": 0.9529,
+          "train_s": 1.5962977500166744,
+          "infer_s": 0.0028697079978883266,
+          "mem_bytes": 101800
+        }
+      ],
+      "rns_arith": [
+        {
+          "model": "RNS int8 MLP, moduli (511, 512, 513)",
+          "acc": 0.9734,
+          "train_s": 3.1451479580136947,
+          "infer_s": 3.6904942499822937,
+          "mem_bytes": 205352,
+          "note": "fp32 acc of same net 0.9747; RNS == int64 on 2,660,000 values: True; numpy int64 ref 1.00s",
+          "extra": {
+            "macs": 203264,
+            "fp32_nJ": 935.0144000000001,
+            "int8_nJ": 61.77280000000001,
+            "rns_nJ": 204.14980000000003,
+            "lane_ops": 609792,
+            "crt_ops": 266,
+            "float_acc": 0.9747,
+            "exact": true,
+            "int_ref_s": 0.9989314170088619,
+            "dynamic_range": 134217216,
+            "max_abs_acc": 1612259
+          }
+        }
+      ]
+    },
+    "fashion": {
+      "baseline": [
+        {
+          "model": "MLP 784-256-10 fp32 (Adam, 5 ep)",
+          "acc": 0.8722,
+          "train_s": 3.215857291012071,
+          "infer_s": 0.007384333002846688,
+          "mem_bytes": 814120
+        },
+        {
+          "model": "MLP 784-32-10 fp32 (Adam, 5 ep)",
+          "acc": 0.8532,
+          "train_s": 1.1573928750003688,
+          "infer_s": 0.0025857919827103615,
+          "mem_bytes": 101800
+        }
+      ],
+      "rns_arith": [
+        {
+          "model": "RNS int8 MLP, moduli (511, 512, 513)",
+          "acc": 0.8617,
+          "train_s": 2.6963826659484766,
+          "infer_s": 3.4991949159884825,
+          "mem_bytes": 205352,
+          "note": "fp32 acc of same net 0.8722; RNS == int64 on 2,660,000 values: True; numpy int64 ref 1.01s",
+          "extra": {
+            "macs": 203264,
+            "fp32_nJ": 935.0144000000001,
+            "int8_nJ": 61.77280000000001,
+            "rns_nJ": 204.14980000000003,
+            "lane_ops": 609792,
+            "crt_ops": 266,
+            "float_acc": 0.8722,
+            "exact": true,
+            "int_ref_s": 1.007541582977865,
+            "dynamic_range": 134217216,
+            "max_abs_acc": 3108829
+          }
+        }
+      ]
+    }
+  }
+}
